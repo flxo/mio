@@ -21,6 +21,7 @@ pub(crate) fn new_socket(domain: libc::c_int, socket_type: libc::c_int) -> io::R
         target_os = "linux",
         target_os = "netbsd",
         target_os = "openbsd",
+        target_os = "fuchsia",
     ))]
     let socket_type = socket_type | libc::SOCK_NONBLOCK | libc::SOCK_CLOEXEC;
 
@@ -52,6 +53,7 @@ pub(crate) fn new_socket(domain: libc::c_int, socket_type: libc::c_int) -> io::R
         target_os = "watchos",
         target_os = "espidf",
         target_os = "vita",
+        target_os = "fuchsia",
     ))]
     {
         if let Err(err) = syscall!(fcntl(socket, libc::F_SETFL, libc::O_NONBLOCK)) {

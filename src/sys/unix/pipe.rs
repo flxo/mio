@@ -18,6 +18,7 @@ pub(crate) fn new_raw() -> io::Result<[RawFd; 2]> {
         target_os = "illumos",
         target_os = "redox",
         target_os = "vita",
+        target_os = "fuchsia",
     ))]
     unsafe {
         if libc::pipe2(fds.as_mut_ptr(), libc::O_CLOEXEC | libc::O_NONBLOCK) != 0 {
@@ -69,6 +70,7 @@ pub(crate) fn new_raw() -> io::Result<[RawFd; 2]> {
         target_os = "watchos",
         target_os = "espidf",
         target_os = "vita",
+        target_os = "fuchsia",
     )))]
     compile_error!("unsupported target for `mio::unix::pipe`");
 
